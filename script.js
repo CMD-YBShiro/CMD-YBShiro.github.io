@@ -1,6 +1,6 @@
 // Wait until the page fully loads
 document.addEventListener("DOMContentLoaded", () => {
-  // Get elements from the page by their IDs
+  // Get elements from the page
   const postForm = document.getElementById("postForm");
   const postTitle = document.getElementById("postTitle");
   const postText = document.getElementById("postText");
@@ -21,15 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // FileReader lets us read the image or video as a URL string
+    // Use FileReader to convert the file into a data URL we can display
     const reader = new FileReader();
 
     reader.onload = () => {
-      // If it's an image, show an <img>
+      // If it's an image, display an <img> tag
       if (file.type.startsWith("image/")) {
         previewBox.innerHTML = `<img src="${reader.result}" alt="Preview image">`;
       }
-      // If it's a video, show a <video> with controls
+      // If it's a video, display a <video> tag with controls
       else if (file.type.startsWith("video/")) {
         previewBox.innerHTML = `
           <video controls>
@@ -42,23 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    // Read the file so reader.onload can use it
     reader.readAsDataURL(file);
   });
 
   // Add a new post to the feed when the form is submitted
   postForm.addEventListener("submit", (event) => {
-    event.preventDefault();  // Stop the default page reload
+    event.preventDefault(); // Stop the page from reloading
 
     const title = postTitle.value.trim();
     const caption = postText.value.trim();
     const type = postType.value;
     const file = postFile.files[0];
 
-    // Default media HTML if no file uploaded
+    // Default media if no file is uploaded
     let mediaHTML = `<div class="post-media placeholder"><p>No media uploaded.</p></div>`;
 
-    // If there is a file, read and build proper mediaHTML
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -74,27 +72,26 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         }
 
-        // After we have mediaHTML, actually add the post to the feed
+        // Add the post once mediaHTML is ready
         addPost(title, caption, type, mediaHTML);
       };
 
       reader.readAsDataURL(file);
     } else {
-      // If no file, add a text-only post
+      // Text-only post
       addPost(title, caption, type, mediaHTML);
     }
 
-    // Reset the form fields and preview box
+    // Reset form and preview
     postForm.reset();
     previewBox.innerHTML = "<p>No media selected yet.</p>";
   });
 
-  // Function that creates the post card and adds it to the feed
+  // Function that creates the post card and inserts it into the feed
   function addPost(title, caption, type, mediaHTML) {
     const post = document.createElement("article");
     post.className = "post-card";
 
-    // Build the inner HTML of the post card
     post.innerHTML = `
       ${mediaHTML}
       <div class="post-content">
@@ -104,16 +101,16 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Add the new post at the top of the feed
+    // Add the new post to the top of the feed
     feedContainer.prepend(post);
   }
 
-  // Toggle theme class on the body (you can later define a light theme)
+  // Toggle between light and dark mode by adding/removing the "dark" class
   themeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
   });
 
-  // Clear the preview area and remove current file
+  // Clear the preview and file input
   clearBtn.addEventListener("click", () => {
     postFile.value = "";
     previewBox.innerHTML = "<p>No media selected yet.</p>";
