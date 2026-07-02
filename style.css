@@ -1,35 +1,37 @@
-/* Color variables for a dark grey + yellow theme */
+/* -------- THEME VARIABLES -------- */
+/* Light mode: light grey + light green */
 :root {
   /* Base surfaces */
-  --bg: #121212;           /* dark grey background */
-  --panel: #1f1f1f;        /* slightly lighter grey for cards */
-  --text: #f4f4f4;         /* soft off-white text */
-  --muted: #b0b0b0;        /* muted text */
-  --border: #2a2a2a;       /* subtle borders */
+  --bg: #f3f4f6;            /* very light grey background */
+  --panel: #ffffff;         /* white panels/cards */
+  --text: #1f2933;          /* dark grey text */
+  --muted: #6b7280;         /* muted grey text */
+  --border: #d1d5db;        /* light grey border */
 
-  /* Accent colors: warm yellow */
-  --accent: #f5c84c;       /* main yellow accent */
-  --accent-dark: #d8aa26;  /* deeper yellow for hover */
+  /* Light mode accents: soft green */
+  --accent: #4ade80;        /* light green */
+  --accent-dark: #22c55e;   /* slightly stronger green */
 
   /* Shadows */
-  --shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  --shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
 }
 
-/* Optional alternate theme if you want to keep the toggle.
-   Right now the toggle still works by adding/removing .dark,
-   but both themes are dark. You can later define a light version. */
+/* Dark mode: dark grey + yellow */
 body.dark {
-  --bg: #0c0c0c;
-  --panel: #181818;
-  --text: #f8f8f8;
-  --muted: #a8a8a8;
-  --border: #262626;
-  --accent: #ffd35a;
-  --accent-dark: #e1b739;
-  --shadow: 0 14px 34px rgba(0, 0, 0, 0.7);
+  --bg: #111827;           /* very dark grey background */
+  --panel: #1f2937;        /* dark grey panels */
+  --text: #f9fafb;         /* near white text */
+  --muted: #9ca3af;        /* muted grey text */
+  --border: #374151;       /* darker border */
+
+  /* Dark mode accents: warm yellow */
+  --accent: #facc15;       /* bright yellow */
+  --accent-dark: #eab308;  /* deeper yellow */
+
+  --shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Page base */
+/* -------- PAGE BASE -------- */
 * {
   box-sizing: border-box;
 }
@@ -43,9 +45,9 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Top bar */
+/* -------- TOP BAR -------- */
 .topbar {
-  background: #181818;
+  background: var(--panel);
   border-bottom: 1px solid var(--border);
   padding: 1rem 1.5rem;
   display: flex;
@@ -69,7 +71,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* Navigation */
+/* -------- NAVIGATION LINKS -------- */
 .nav {
   display: flex;
   gap: 1rem;
@@ -78,25 +80,29 @@ body {
 
 .nav a {
   text-decoration: none;
-  color: var(--accent);
+  color: var(--accent-dark);
   font-weight: bold;
   font-size: 0.95rem;
 }
 
 .nav a:hover {
-  color: var(--accent-dark);
+  text-decoration: underline;
 }
 
-/* Main layout */
+/* -------- MAIN LAYOUT -------- */
 main {
   max-width: 1100px;
   margin: 0 auto;
   padding: 1.5rem;
 }
 
-/* Hero section: dark grey + yellow gradient */
+/* -------- HERO SECTION -------- */
+/* Uses a gradient that changes feel between light and dark modes */
 .hero {
-  background: radial-gradient(circle at top left, #f5c84c 0%, #1f1f1f 40%, #121212 100%);
+  background: radial-gradient(circle at top left,
+    var(--accent) 0%,
+    var(--panel) 40%,
+    var(--bg) 100%);
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 2rem;
@@ -113,7 +119,7 @@ main {
   color: var(--muted);
 }
 
-/* Panels */
+/* -------- PANELS (CARD SECTIONS) -------- */
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -123,7 +129,7 @@ main {
   box-shadow: var(--shadow);
 }
 
-/* Form styling */
+/* -------- FORMS -------- */
 form {
   display: grid;
   gap: 0.9rem;
@@ -138,20 +144,20 @@ input, textarea, select {
   padding: 0.85rem 1rem;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: #181818;
+  background: var(--bg);
   color: var(--text);
   font-size: 1rem;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #707070;
+  color: var(--muted);
 }
 
-/* Button styling */
+/* -------- BUTTONS -------- */
 button {
   background: var(--accent);
-  color: #121212;
+  color: #0f172a; /* dark text on accent */
   border: none;
   padding: 0.9rem 1.2rem;
   border-radius: 10px;
@@ -159,7 +165,7 @@ button {
   font-size: 1rem;
   font-weight: bold;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
 button:hover {
@@ -167,7 +173,7 @@ button:hover {
   transform: translateY(-1px);
 }
 
-/* Preview box */
+/* -------- PREVIEW BOX -------- */
 .preview-box {
   min-height: 180px;
   border: 2px dashed var(--border);
@@ -176,7 +182,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: #181818;
+  background: var(--panel);
   color: var(--muted);
   text-align: center;
   padding: 1rem;
@@ -190,15 +196,16 @@ button:hover {
   border-radius: 12px;
 }
 
-/* Feed layout */
+/* -------- FEED LAYOUT -------- */
 .feed-grid {
   display: grid;
   gap: 1rem;
 }
 
+/* Post and sale cards */
 .post-card,
 .sale-card {
-  background: #181818;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
@@ -209,7 +216,7 @@ button:hover {
 .post-media {
   width: 100%;
   min-height: 220px;
-  background: linear-gradient(135deg, #1f1f1f, #121212);
+  background: linear-gradient(135deg, var(--bg), var(--panel));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,14 +230,14 @@ button:hover {
   display: block;
 }
 
-/* Placeholder text */
+/* Placeholder message */
 .placeholder p {
   color: var(--muted);
   padding: 1rem;
   text-align: center;
 }
 
-/* Post content */
+/* Post content text */
 .post-content {
   padding: 1rem;
 }
@@ -249,13 +256,14 @@ button:hover {
   margin-top: 0.5rem;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: rgba(245, 200, 76, 0.18);
-  color: var(--accent);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--accent);
+  color: var(--accent-dark);
   font-size: 0.85rem;
   font-weight: bold;
 }
 
-/* Sales section */
+/* -------- SALES SECTION -------- */
 .sale-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -267,19 +275,19 @@ button:hover {
 }
 
 .price {
-  color: var(--accent);
+  color: var(--accent-dark);
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-/* Quick actions */
+/* -------- QUICK ACTIONS -------- */
 .actions {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-/* Footer */
+/* -------- FOOTER -------- */
 footer {
   text-align: center;
   padding: 1.25rem;
@@ -287,7 +295,7 @@ footer {
   border-top: 1px solid var(--border);
 }
 
-/* Responsive design */
+/* -------- RESPONSIVE DESIGN -------- */
 @media (max-width: 700px) {
   .topbar {
     flex-direction: column;
