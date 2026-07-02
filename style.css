@@ -1,0 +1,271 @@
+/* Color variables for a calm, soft theme */
+:root {
+  --bg: #f4f7f6;
+  --panel: #ffffff;
+  --text: #24343a;
+  --muted: #64757c;
+  --accent: #7aa6a1;
+  --accent-dark: #5f8d89;
+  --border: #dbe5e3;
+  --shadow: 0 10px 25px rgba(36, 52, 58, 0.08);
+}
+
+/* Dark theme colors */
+body.dark {
+  --bg: #172126;
+  --panel: #223038;
+  --text: #e9f1f1;
+  --muted: #b4c2c2;
+  --accent: #83b7b2;
+  --accent-dark: #a0cbc6;
+  --border: #31424a;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Page base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Top bar */
+.topbar {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.brand p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--accent-dark);
+  font-weight: bold;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main layout */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(135deg, rgba(122, 166, 161, 0.18), rgba(255, 255, 255, 0.6));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.hero h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+/* Panels */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* Form styling */
+form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* Preview box */
+.preview-box {
+  min-height: 180px;
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: rgba(122, 166, 161, 0.06);
+  color: var(--muted);
+  text-align: center;
+  padding: 1rem;
+}
+
+.preview-box img,
+.preview-box video {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Feed layout */
+.feed-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.post-card,
+.sale-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.post-media {
+  width: 100%;
+  min-height: 220px;
+  background: rgba(122, 166, 161, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-media img,
+.post-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.placeholder p {
+  color: var(--muted);
+  padding: 1rem;
+  text-align: center;
+}
+
+.post-content {
+  padding: 1rem;
+}
+
+.post-content h3 {
+  margin-top: 0;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(122, 166, 161, 0.16);
+  color: var(--accent-dark);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* Sales section */
+.sale-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.sale-card {
+  padding: 1rem;
+}
+
+.price {
+  color: var(--accent-dark);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Quick actions */
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--muted);
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+}
